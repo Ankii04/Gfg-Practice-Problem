@@ -2,24 +2,18 @@ class Solution {
   public:
     vector<int> subarraySum(vector<int> &arr, int target) {
         int n = arr.size();
-        int left = 0, right = 0;
+        int start = 0;
         long long sum = 0;
-
-        while (right < n) {
-            sum += arr[right];
-
-            while (sum > target && left <= right) {
-                sum -= arr[left];
-                left++;
+        for(int end = 0; end < n; end++){
+            sum += arr[end];
+            while(sum > target && start <= end){
+                sum -= arr[start];
+                start++;
             }
-
-            if (sum == target) {
-                return {left + 1, right + 1};
+            if(sum == target){
+                return {start + 1, end + 1};
             }
-
-            right++;
         }
-
         return {-1};
     }
 };
