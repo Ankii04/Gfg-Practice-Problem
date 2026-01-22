@@ -1,21 +1,37 @@
 class Solution {
-public:
-    string reverseWords(string s) {
-        vector<string> v;
-        string t="";
-        for(char c:s){
-            if(c=='.'){
-                if(!t.empty()) v.push_back(t);
-                t="";
-            } else t+=c;
+  public:
+    string reverseWords(string &s) {
+    
+        stack<string>st;
+        string add ="";
+        for(int i=0;i<s.size();i++)
+        {
+            if(s[i] =='.')
+            {   if(add.size() > 0)
+                {
+                    
+                    st.push(add);
+                }
+                
+                add="";
+            }
+            else
+            {
+                add+=s[i];
+            }
         }
-        if(!t.empty()) v.push_back(t);
-        reverse(v.begin(), v.end());
-        string ans="";
-        for(int i=0;i<v.size();i++){
-            ans+=v[i];
-            if(i!=v.size()-1) ans+='.';
-        }
-        return ans;
+        if(add.size() > 0)st.push(add);
+        string ans = "";
+        
+       while(!st.empty())
+       {
+           ans+=st.top();
+           st.pop();
+           if(!st.empty())
+           {
+               ans+=".";
+           }
+       }
+       return ans;
     }
 };
