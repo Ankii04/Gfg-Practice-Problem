@@ -2,13 +2,9 @@ class Solution {
   public:
     bool isPalindrome(string& s) {
         // code here
-        string temp =s;
-        string a ="";
-        for(int i=s.size()-1;i>=0;i--)
-        {
-            a+=s[i];
-        }
-        if(a==temp)
+        string a = s;
+        reverse(a.begin(),a.end());
+        if(a==s)
         {
             return true;
         }
